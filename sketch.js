@@ -6,6 +6,7 @@ var MARGIN = 40;
 var Gravity = -0.1;
 var Sink = 20;
 var eyes
+var bg
 
 // gem settings
 var gemX, gemY
@@ -17,7 +18,7 @@ var healthdecrease = 1;
 var healthBarWidth = 60;
 
 function setup() {
-  
+  bg = loadImage("assets/cave01.png");
   createCanvas(1500, 3000);
   
   //create the sprites
@@ -96,7 +97,7 @@ for(var i = 0; i<32; i++) {
 
 function draw() {
 
-  background(255,182,193);  //background colour is pink
+  background(bg);  //background colour is pink
   
   gem.velocity.y= -0.5;
   
