@@ -5,6 +5,7 @@ var body1, body2, body3, body4, body5, gem, stonehenge1, stonehenge2, stonehenge
 var eyes
 var scribble
 var scribs
+var line01
 
 //background
 var bg
@@ -96,13 +97,16 @@ for(var i = 0; i<32; i++) {
   body5 = createSprite(1150, 400);
   body5.addImage("normal", loadImage("assets/body05.png"));
   body5.addImage("jockstrap", loadImage("assets/urinal.png"));
+  
+  line01 = createSprite(500,800);
+  line01.addImage(loadImage("assets/line01.png"))
 }
 
 function draw() {
 
   background(bg);  //background colour is pink
   
-  gem.velocity.y= -0.5;
+  //gem.velocity.y= -0.5;
   
    drawHealthBar();
   //gem.velocity.y += Gravity;
@@ -167,9 +171,14 @@ if ((body1.overlap(stonehenge4)) && (body2.overlap(stonehenge1)) && (body3.overl
   //draw the sprites
   drawSprites();
   
- animation(scribble, 300, 300);
- animation(scribs, 500, 500);
+ animation(scribble, 90, 250);
+ animation(scribs, 1450, 300);
+  
+  if(gem.collide(line01)) {
+    gem.velocity.y = 0;
+    }
 }
+
 //use WASD keys to move Gem
 
 function keyPressed() {
@@ -178,7 +187,9 @@ function keyPressed() {
   if (keyCode == (65)) 
     gem.setSpeed(1.5, 180);
   if (keyCode == (83))
-    gem.velocity.y = Sink;
+    gem.setSpeed(1.5, 90);
+  if (keyCode == (87))
+    gem.setSpeed(1.5, 270);
   }
 
 function keyReleased(){
@@ -187,7 +198,9 @@ function keyReleased(){
    if (keyCode == (65))
     gem.setSpeed (0,0);
   if (keyCode == (83))
-    gem.velocity.y = (0,0);
+    gem.setSpeed (0,0);
+  if (keyCode == (87))
+    gem.setSpeed(0,0);
 }
 
 function createEyes(type, x, y) {
@@ -224,6 +237,7 @@ function drawHealthBar() {
   }
   rectMode(CORNER);
   rect(gem.position.x -(healthBarWidth/2), gem.position.y - 60, healthBarWidth*(health/maxHealth), 5);
+  
 }
 
 //function returnToTop() {
