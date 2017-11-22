@@ -2,14 +2,18 @@
 
 // sprites
 var body1, body2, body3, body4, body5, gem, stonehenge1, stonehenge2, stonehenge3, stonehenge4, stonehenge5, stonehenge6, stonehenge7, eye;
+var eyes
+var scribble
+var scribs
+
+//background
+var bg
+
+// cursor settings
+var gemX, gemY
 var MARGIN = 40;
 var Gravity = -0.1;
 var Sink = 20;
-var eyes
-var bg
-
-// gem settings
-var gemX, gemY
 
 // health 
 var maxHealth = 100;
@@ -17,12 +21,12 @@ var health = 100;
 var healthdecrease = 1;
 var healthBarWidth = 60;
 
-var scribble
+
 
 function preload(){
   
 scribble = loadAnimation("assets/scribble01.png", "assets/scribble02.png", "assets/scribble03.png", "assets/scribble04.png")
-  
+scribs = loadAnimation("assets/scribs01.png", "assets/scribs02.png", "assets/scribs03.png", "assets/scribs04.png", "assets/scribs05.png", "assets/scribs06.png", "assets/scribs07.png")  
 }
 
 function setup() {
@@ -45,16 +49,13 @@ function setup() {
    
   eyes = new Group();
   
-  
 for(var i = 0; i<32; i++) {
   var ang = random(360);
   var px = width/2 + 1000 * cos(radians(ang));
   var py = height/2+ 1000 * sin(radians(ang));
   createEyes(3, px, py);
-    
   }
 
-  
   stonehenge1 = createSprite(300, 150);
   stonehenge1.addImage(loadImage("assets/stonehenge01.png"))
   
@@ -95,13 +96,7 @@ for(var i = 0; i<32; i++) {
   body5 = createSprite(1150, 400);
   body5.addImage("normal", loadImage("assets/body05.png"));
   body5.addImage("jockstrap", loadImage("assets/urinal.png"));
-
-
-
-
 }
-
-
 
 function draw() {
 
@@ -125,10 +120,6 @@ function draw() {
   //}
   
   //set the sprites to change animation when overlapped on the correct object
-
-   
-
-  
   if(body1.overlap(stonehenge4))
     body1.changeAnimation("poppers");
   else
@@ -177,6 +168,7 @@ if ((body1.overlap(stonehenge4)) && (body2.overlap(stonehenge1)) && (body3.overl
   drawSprites();
   
  animation(scribble, 300, 300);
+ animation(scribs, 500, 500);
 }
 //use WASD keys to move Gem
 
@@ -242,4 +234,3 @@ function drawHealthBar() {
     //gem.changeAnimation("normal");
   
 //}
-
