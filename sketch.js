@@ -17,6 +17,14 @@ var health = 100;
 var healthdecrease = 1;
 var healthBarWidth = 60;
 
+var scribble
+
+function preload(){
+  
+scribble = loadAnimation("assets/scribble01.png", "assets/scribble02.png", "assets/scribble03.png", "assets/scribble04.png")
+  
+}
+
 function setup() {
   bg = loadImage("assets/cave01.png");
   createCanvas(1500, 3000);
@@ -117,7 +125,10 @@ function draw() {
   //}
   
   //set the sprites to change animation when overlapped on the correct object
- 
+
+   
+
+  
   if(body1.overlap(stonehenge4))
     body1.changeAnimation("poppers");
   else
@@ -165,7 +176,7 @@ if ((body1.overlap(stonehenge4)) && (body2.overlap(stonehenge1)) && (body3.overl
   //draw the sprites
   drawSprites();
   
- 
+ animation(scribble, 300, 300);
 }
 //use WASD keys to move Gem
 
@@ -231,3 +242,4 @@ function drawHealthBar() {
     //gem.changeAnimation("normal");
   
 //}
+
