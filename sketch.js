@@ -1,29 +1,33 @@
 // GAY WITCHCRAFT BY TOMMY TING //
 
-// sprites
-var body1, body2, body3, body4, body5, gem, stonehenge1, stonehenge2, stonehenge3, stonehenge4, stonehenge5, stonehenge6, stonehenge7, eye;
-var eyes
-var scribble
-var scribs
-var line01
+//level 1 sprites
+var line01;
+var isActive = false;
+var rose01, rose02, rose03;
+var bloomingRose;
+
+// level 2 sprites
+var body1, body2, body3, body4, body5, stonehenge1, stonehenge2, stonehenge3, stonehenge4, stonehenge5, stonehenge6, stonehenge7;
+var eyes;
+var scribble;
+var scribs;
 
 //background
-var bg
+var bg;
 
 // cursor settings
-var gemX, gemY
-var MARGIN = 40
+var gem;
+var gemX, gemY;
+var MARGIN = 40;
 var gravity = .5;
 var Sink = 20;
-var jump = 15
+var jump = 15;
 
 // health 
 var maxHealth = 100;
 var health = 100;
 var healthdecrease = 1;
 var healthBarWidth = 60;
-
-var isActive = false;
 
 
 
@@ -37,9 +41,9 @@ function setup() {
   bg = loadImage("assets/cave01.png");
   createCanvas(1500, 3000);
   
-  //create the sprites
+//level 1create the sprites
   
-   
+//floating eyes  
   eyes = new Group();
   
 for(var i = 0; i<32; i++) {
@@ -48,56 +52,57 @@ for(var i = 0; i<32; i++) {
   var py = height/2+ 1000 * sin(radians(ang));
   createEyes(3, px, py);
   }
-
-  stonehenge1 = createSprite(300, 150);
+  
+//level 1 create the sprites
+  
+  
+//level 2 create the sprites
+  stonehenge1 = createSprite(300, 1100);
   stonehenge1.addImage(loadImage("assets/stonehenge01.png"))
   
-  stonehenge2 = createSprite(550, 100);
+  stonehenge2 = createSprite(550, 1000);
   stonehenge2.addImage(loadImage("assets/stonehenge02.png"))
   
-  stonehenge3 = createSprite(800, 120);
+  stonehenge3 = createSprite(800, 1000);
   stonehenge3.addImage(loadImage("assets/stonehenge03.png"))
   
-  stonehenge4 = createSprite(1050, 250);
+  stonehenge4 = createSprite(1200, 1100);
   stonehenge4.addImage(loadImage("assets/stonehenge04.png"))
   
-  stonehenge5 = createSprite(480, 300);
+  stonehenge5 = createSprite(480, 1600);
   stonehenge5.addImage(loadImage("assets/stonehenge06.png"))
   
-  stonehenge6 = createSprite(750, 350);
+  stonehenge6 = createSprite(750, 1500);
   stonehenge6.addImage(loadImage("assets/stonehenge05.png"))
   
-  stonehenge7 = createSprite(300, 420);
+  stonehenge7 = createSprite(300, 1500);
   stonehenge7.addImage(loadImage("assets/stonehenge07.png"))
   
-  body1 = createSprite(100, 370);
+  body1 = createSprite(100, 500);
   body1.addImage("normal", loadImage("assets/body01.png"));
   body1.addImage("poppers", loadImage("assets/poppers.png"));
   
-  body2 = createSprite(900, 450);
+  body2 = createSprite(900, 1500);
   body2.addImage("normal", loadImage("assets/body02.png"));
   body2.addImage("jockstrap", loadImage("assets/jockstrap.png"));
   
-  body3 = createSprite(600, 450);
+  body3 = createSprite(600, 1500);
   body3.addImage("normal", loadImage("assets/body03.png"));
   body3.addImage("collar", loadImage("assets/collar.png"));
   
-  body4 = createSprite(650, 500);
+  body4 = createSprite(650, 1500);
   body4.addImage("normal", loadImage("assets/body04.png"));
   body4.addImage("truvada", loadImage("assets/truvada.png"));
   
-  body5 = createSprite(1150, 400);
+  body5 = createSprite(1150, 1500);
   body5.addImage("normal", loadImage("assets/body05.png"));
   body5.addImage("jockstrap", loadImage("assets/urinal.png"));
   
-  line01 = createSprite(750,800);
+  line01 = createSprite(750, 800);
   line01.addImage(loadImage("assets/line01.png"))
   
+  //avatar
   gem = createSprite(600, 200);
-  //gem.maxSpeed = 4;
-  //gem.friction = .98;
-  //gem.setCollider("circle", 0,0, 20);
-  
   
   gem.addImage("normal", loadImage("assets/gem.png"));
   gem.addImage("eye", loadImage("assets/eye01.png"));
@@ -105,17 +110,18 @@ for(var i = 0; i<32; i++) {
   gem.setCollider("circle", 0,0, 20);
   gemX = width/4;
   gemY = height/5;
+  
 }
 
 function draw() {
 
+  //background
   background(bg);  
-  
-  //gem.velocity.y= -0.5;
-  
-   drawHealthBar();
+    
+  //set avatar physics
   gem.velocity.y += gravity;
   
+  //set canvas boundary for sprites so they dont disappear once they leave the canvas
   for(var i=0; i<allSprites.length; i++) {
   var s = allSprites[i];
   if(s.position.x<-MARGIN) s.position.x = width+MARGIN;
@@ -123,9 +129,25 @@ function draw() {
   if(s.position.y<-MARGIN) s.position.y = height+MARGIN;
   if(s.position.y>height+MARGIN) s.position.y = -MARGIN;
   }
-
   
-  //set the sprites to change animation when overlapped on the correct object
+  textSize(60);
+  textStyle(BOLD)
+  fill(50);
+  text("1. OUTLAWS", 50, 50, 1000, 80);
+  
+  textSize(24);
+  textStyle(BOLD)
+  fill(50);
+  text("Collect the Roses", 50, 125, 1000, 80);
+
+  if(gem.overlap(body1) || isActive){
+  textSize(24);
+  fill(50);
+  text("Picture a land where you're free, like really free.", 500, 50, 600, 90);
+  isActive = true
+  }
+
+  //LEVEL 2 set the sprites to change animation when overlapped on the correct object
   if(body1.overlap(stonehenge4))
     body1.changeAnimation("poppers");
   else
@@ -151,15 +173,15 @@ function draw() {
   else
     body5.changeAnimation("normal");
   
-//when all sprites make the correct overlap then load image of Dionysus
-if ((body1.overlap(stonehenge4)) && (body2.overlap(stonehenge1)) && (body3.overlap(stonehenge2)) && (body4.overlap(stonehenge3)) && (body5.overlap(stonehenge5)))
+  //when all sprites make the correct overlap then load image of Dionysus
+  if ((body1.overlap(stonehenge4)) && (body2.overlap(stonehenge1)) && (body3.overlap(stonehenge2)) && (body4.overlap(stonehenge3)) && (body5.overlap(stonehenge5)))
     {
   dionysus = createSprite(640,290)
   dionysus.addAnimation("normal", "assets/dionysus01.png", "assets/dionysus02.png", "assets/dionysus03.png");  
     }
   
                                                                           
-  //  displacer so gem can move the bodies around
+  //displacer so gem can move the bodies around
   
   gem.displace(body2);
   gem.displace(body3);
@@ -170,25 +192,14 @@ if ((body1.overlap(stonehenge4)) && (body2.overlap(stonehenge1)) && (body3.overl
   //draw the sprites
   drawSprites();
   
- animation(scribble, 90, 250);
- animation(scribs, 1450, 300);
+  animation(scribble, 90, 250);
+  animation(scribs, 1450, 300);
   
   if(gem.collide(line01)) {
     gem.velocity.y = 0;
-    }
+  }
   
- s = "OUTLAWS";
-  textSize(60);
-  textStyle(BOLD)
-  fill(50);
-  text(s, 400, 500, 70, 80);
-
-   if(gem.overlap(body1) || isActive){
-  textSize(16);
-  fill(50);
-  text("Picture a land where you're free - really free.", 70, 300, 250, 90);
-  isActive = true
-   }
+  drawHealthBar();
 }
 
 //use WASD keys to move Gem
@@ -261,3 +272,4 @@ function drawHealthBar() {
     //gem.changeAnimation("normal");
   
 //}
+
