@@ -23,6 +23,10 @@ var gravity = .5;
 var Sink = 20;
 var jump = 15;
 
+//bullets
+var bullets;
+var bulletsImage;
+
 // health 
 var maxHealth = 100;
 var health = 100;
@@ -33,8 +37,11 @@ var healthBarWidth = 60;
 
 function preload(){
   
-scribble = loadAnimation("assets/scribble01.png", "assets/scribble02.png", "assets/scribble03.png", "assets/scribble04.png")
-scribs = loadAnimation("assets/scribs01.png", "assets/scribs02.png", "assets/scribs03.png", "assets/scribs04.png", "assets/scribs05.png", "assets/scribs06.png", "assets/scribs07.png")  
+scribble = loadAnimation("assets/scribble01.png", "assets/scribble02.png", "assets/scribble03.png", "assets/scribble04.png");
+scribs = loadAnimation("assets/scribs01.png", "assets/scribs02.png", "assets/scribs03.png", "assets/scribs04.png", "assets/scribs05.png", "assets/scribs06.png", "assets/scribs07.png");
+bloomingrose = loadAnimation("assets/bloomingrose01.png", "assets/bloomingrose02.png", "assets/bloomingrose03.png", "assets/bloomingrose04.png", "assets/bloomingrose05.png", "assets/bloomingrose06.png", "assets/bloomingrose07.png", "assets/bloomingrose08.png", "assets/bloomingrose09.png", "assets/bloomingrose10.png");
+//gem = loadAnimation("assets/jellygummie01.png", "assets/jellygummie02.png", "assets/jellygummie03.png", "assets/jellygummie04.png", "assets/jellygummie05.png", "assets/jellygummie06.png", "assets/jellygummie07.png", "assets/jellygummie08.png", "assets/jellygummie09.png", "assets/jellygummie10.png", "assets/jellygummie11.png")
+bulletsImage = loadImage("assets/bullets01.png")
 }
 
 function setup() {
@@ -45,6 +52,7 @@ function setup() {
   
 //floating eyes  
   eyes = new Group();
+  bullets = new Group();
   
 for(var i = 0; i<32; i++) {
   var ang = random(360);
@@ -54,7 +62,7 @@ for(var i = 0; i<32; i++) {
   }
   
 //level 1 create the sprites
-  
+
   
 //level 2 create the sprites
   stonehenge1 = createSprite(300, 1100);
@@ -103,9 +111,9 @@ for(var i = 0; i<32; i++) {
   
   //avatar
   gem = createSprite(600, 200);
-  
-  gem.addImage("normal", loadImage("assets/gem.png"));
-  gem.addImage("eye", loadImage("assets/eye01.png"));
+  gem.addAnimation("assets/jellygummie01.png", "assets/jellygummie02.png", "assets/jellygummie03.png", "assets/jellygummie04.png", "assets/jellygummie05.png", "assets/jellygummie06.png", "assets/jellygummie07.png", "assets/jellygummie08.png", "assets/jellygummie09.png", "assets/jellygummie10.png", "assets/jellygummie11.png");
+  //gem.addImage("normal", loadImage("assets/gem.png"));
+  //gem.addImage("eye", loadImage("assets/eye01.png"));
   
   gem.setCollider("circle", 0,0, 20);
   gemX = width/4;
@@ -143,11 +151,34 @@ function draw() {
   if(gem.overlap(body1) || isActive){
   textSize(24);
   fill(50);
-  text("Picture a land where you're free, like really free.", 500, 50, 600, 90);
+  text("Picture a land where you're free, like really free.", 500, 50, 600, 90) &&
+  text("Humans are on the brink of extinction, water levels have rise dramatically due to natural diasters and mega dam projects.", 500, 100, 600, 90) &&
+  text("Floodings everywhere.", 500, 200, 600, 90) &&
+  text("Since you do not reproduce,", 500, 250, 600, 90) &&
+  text("YOU ARE AN OUTLAW", 500, 300, 600, 90) &&
+  text("You were born even though you were not supposed to, they should have caught it during your mother's pregnancy.", 500, 350, 600, 90) &&
+  text("There is a place that you have to go to, you need to get there to survive, but the only way is down, down to the bottom of the sea.", 500, 450, 600, 90) &&
+  text("They have killed you before and they will kill you again.", 500, 550, 600, 90)  
+  && animation(bloomingrose, 950, 250);
   isActive = true
   }
+  
+  animation(scribble, 90, 250);
+  animation(scribs, 1450, 300);
+  
 
   //LEVEL 2 set the sprites to change animation when overlapped on the correct object
+  
+  textSize(60);
+  textStyle(BOLD)
+  fill(50);
+  text("2. MAGIC", 50, 925, 1000, 80);
+  
+  textSize(24);
+  textStyle(BOLD)
+  fill(50);
+  text("Collect the Roses", 50, 125, 1000, 80);
+  
   if(body1.overlap(stonehenge4))
     body1.changeAnimation("poppers");
   else
@@ -189,17 +220,25 @@ function draw() {
   gem.displace(body5);
   eyes.displace(gem);
   
+  if(keyCode == (88))
+    {
+    var bullet = createSprite(gem.position.x, gem.position.y);
+    bullet.addImage(bulletsImage);
+    bullet.setSpeed(10+gem.getSpeed(), gem.rotation);
+    bullet.life = 30;
+    bullets.add(bullet);
+    }
+  
   //draw the sprites
   drawSprites();
   
-  animation(scribble, 90, 250);
-  animation(scribs, 1450, 300);
-  
+
   if(gem.collide(line01)) {
     gem.velocity.y = 0;
   }
   
-  drawHealthBar();
+  
+  //drawHealthBar();
 }
 
 //use WASD keys to move Gem
@@ -263,6 +302,8 @@ function drawHealthBar() {
   rect(gem.position.x -(healthBarWidth/2), gem.position.y - 60, healthBarWidth*(health/maxHealth), 5);
   
 }
+
+
 
 //function returnToTop() {
   
