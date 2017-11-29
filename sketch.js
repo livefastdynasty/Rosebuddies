@@ -42,8 +42,7 @@ scribble = loadAnimation("assets/scribble01.png", "assets/scribble02.png", "asse
 scribs = loadAnimation("assets/scribs01.png", "assets/scribs02.png", "assets/scribs03.png", "assets/scribs04.png", "assets/scribs05.png", "assets/scribs06.png", "assets/scribs07.png");
 bloomingrose = loadAnimation("assets/bloomingrose01.png", "assets/bloomingrose02.png", "assets/bloomingrose03.png", "assets/bloomingrose04.png", "assets/bloomingrose05.png", "assets/bloomingrose06.png", "assets/bloomingrose07.png", "assets/bloomingrose08.png", "assets/bloomingrose09.png", "assets/bloomingrose10.png");
 
-
-  //gem = loadAnimation("assets/jellygummie01.png", "assets/jellygummie02.png", "assets/jellygummie03.png", "assets/jellygummie04.png", "assets/jellygummie05.png", "assets/jellygummie06.png", "assets/jellygummie07.png", "assets/jellygummie08.png", "assets/jellygummie09.png", "assets/jellygummie10.png", "assets/jellygummie11.png")
+//gem = loadAnimation("assets/jellygummie01.png", "assets/jellygummie02.png", "assets/jellygummie03.png", "assets/jellygummie04.png", "assets/jellygummie05.png", "assets/jellygummie06.png", "assets/jellygummie07.png", "assets/jellygummie08.png", "assets/jellygummie09.png", "assets/jellygummie10.png", "assets/jellygummie11.png")
 bulletsImage = loadImage("assets/bullets01.png")
 }
 
@@ -83,6 +82,9 @@ for(var i = 0; i<32; i++) {
   blueRose = createSprite(1100, 600);
   blueRose.addImage(loadImage("assets/lightbluerose.png"));
   
+  line01 = createSprite(750, 800);
+  line01.addImage(loadImage("assets/line01.png"));
+  
 //level 2 create the sprites
   stonehenge1 = createSprite(300, 1300);
   stonehenge1.addImage(loadImage("assets/stonehenge01.png"));
@@ -96,48 +98,37 @@ for(var i = 0; i<32; i++) {
   stonehenge4 = createSprite(1100, 1200);
   stonehenge4.addImage(loadImage("assets/stonehenge04.png"));
   
-  stonehenge5 = createSprite(480, 1600);
-  stonehenge5.addImage(loadImage("assets/stonehenge06.png"));
+  stonehenge5 = createSprite(480, 1700);
+  stonehenge5.addImage(loadImage("assets/stonehenge05.png"));
   
-  stonehenge6 = createSprite(750, 1500);
-  stonehenge6.addImage(loadImage("assets/stonehenge05.png"));
+  stonehenge6 = createSprite(600, 1500);
+  stonehenge6.addImage(loadImage("assets/stonehenge06.png"));
   
-  stonehenge7 = createSprite(300, 1500);
+  stonehenge7 = createSprite(300, 1600);
   stonehenge7.addImage(loadImage("assets/stonehenge07.png"));
   
   body1 = createSprite(100, 1500);
   body1.addImage("normal", loadImage("assets/body01.png"));
  
-  
   body2 = createSprite(900, 1500);
   body2.addImage("normal", loadImage("assets/body02.png"));
-  
   
   body3 = createSprite(600, 1500);
   body3.addImage("normal", loadImage("assets/body03.png"));
   
-  
   body4 = createSprite(650, 1500);
   body4.addImage("normal", loadImage("assets/body04.png"));
-  
   
   body5 = createSprite(1150, 1500);
   body5.addImage("normal", loadImage("assets/body05.png"));
   
-  
-  line01 = createSprite(750, 800);
-  line01.addImage(loadImage("assets/line01.png"))
-  
   //avatar
-  gem = createSprite(600, 200);
+  gem = createSprite(750, 0);
   gem.addAnimation("assets/jellygummie01.png", "assets/jellygummie02.png", "assets/jellygummie03.png", "assets/jellygummie04.png", "assets/jellygummie05.png", "assets/jellygummie06.png", "assets/jellygummie07.png", "assets/jellygummie08.png", "assets/jellygummie09.png", "assets/jellygummie10.png", "assets/jellygummie11.png");
-  //gem.addImage("normal", loadImage("assets/gem.png"));
-  //gem.addImage("eye", loadImage("assets/eye01.png"));
   
   gem.setCollider("circle", 0,0, 20);
   gemX = width/4;
   gemY = height/5;
-  
 }
 
 function draw() {
