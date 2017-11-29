@@ -4,7 +4,7 @@
 var line01;
 var isActive = false;
 var rose01, rose02, rose03;
-var bloomingRose;
+var bloomingose, bloomingrose01;
 
 // level 2 sprites
 var body1, body2, body3, body4, body5, stonehenge1, stonehenge2, stonehenge3, stonehenge4, stonehenge5, stonehenge6, stonehenge7;
@@ -24,7 +24,7 @@ var Sink = 20;
 var jump = 15;
 
 //bullets
-var bullets;
+var bullets = true;
 var bulletsImage;
 
 // health 
@@ -40,7 +40,9 @@ function preload(){
 scribble = loadAnimation("assets/scribble01.png", "assets/scribble02.png", "assets/scribble03.png", "assets/scribble04.png");
 scribs = loadAnimation("assets/scribs01.png", "assets/scribs02.png", "assets/scribs03.png", "assets/scribs04.png", "assets/scribs05.png", "assets/scribs06.png", "assets/scribs07.png");
 bloomingrose = loadAnimation("assets/bloomingrose01.png", "assets/bloomingrose02.png", "assets/bloomingrose03.png", "assets/bloomingrose04.png", "assets/bloomingrose05.png", "assets/bloomingrose06.png", "assets/bloomingrose07.png", "assets/bloomingrose08.png", "assets/bloomingrose09.png", "assets/bloomingrose10.png");
-//gem = loadAnimation("assets/jellygummie01.png", "assets/jellygummie02.png", "assets/jellygummie03.png", "assets/jellygummie04.png", "assets/jellygummie05.png", "assets/jellygummie06.png", "assets/jellygummie07.png", "assets/jellygummie08.png", "assets/jellygummie09.png", "assets/jellygummie10.png", "assets/jellygummie11.png")
+
+
+  //gem = loadAnimation("assets/jellygummie01.png", "assets/jellygummie02.png", "assets/jellygummie03.png", "assets/jellygummie04.png", "assets/jellygummie05.png", "assets/jellygummie06.png", "assets/jellygummie07.png", "assets/jellygummie08.png", "assets/jellygummie09.png", "assets/jellygummie10.png", "assets/jellygummie11.png")
 bulletsImage = loadImage("assets/bullets01.png")
 }
 
@@ -141,14 +143,18 @@ function draw() {
   textSize(60);
   textStyle(BOLD)
   fill(50);
-  text("1. OUTLAWS", 50, 50, 1000, 80);
+  text("I OUTLAWS", 50, 50, 1000, 80);
   
   textSize(24);
   textStyle(BOLD)
   fill(50);
   text("Collect the Roses", 50, 125, 1000, 80);
+  
+  animation(scribble, 100, 160);
+  animation(scribs, 1300, 100);
 
   if(gem.overlap(body1) || isActive){
+    
   textSize(24);
   fill(50);
   text("Picture a land where you're free, like really free.", 500, 50, 600, 90) &&
@@ -158,26 +164,28 @@ function draw() {
   text("YOU ARE AN OUTLAW", 500, 300, 600, 90) &&
   text("You were born even though you were not supposed to, they should have caught it during your mother's pregnancy.", 500, 350, 600, 90) &&
   text("There is a place that you have to go to, you need to get there to survive, but the only way is down, down to the bottom of the sea.", 500, 450, 600, 90) &&
-  text("They have killed you before and they will kill you again.", 500, 550, 600, 90)  
-  && animation(bloomingrose, 950, 250);
+  text("They have killed you before and they will kill you again.", 500, 550, 600, 90) &&
+  animation(bloomingrose, 90, 250);
   isActive = true
   }
   
-  animation(scribble, 90, 250);
-  animation(scribs, 1450, 300);
+  if(gem.overlap(body1) || isActive){
+ animation(bloomingrose, 1450, 300);
+    isActive = true
+  }
   
 
-  //LEVEL 2 set the sprites to change animation when overlapped on the correct object
+  //LEVEL  set the sprites to change animation when overlapped on the correct object
   
   textSize(60);
   textStyle(BOLD)
   fill(50);
-  text("2. MAGIC", 50, 925, 1000, 80);
+  text("II MAGICK", 50, 925, 1000, 80);
   
   textSize(24);
   textStyle(BOLD)
   fill(50);
-  text("Collect the Roses", 50, 125, 1000, 80);
+  text("Match the Roses", 50, 1000, 1000, 80);
   
   if(body1.overlap(stonehenge4))
     body1.changeAnimation("poppers");
@@ -211,6 +219,19 @@ function draw() {
   dionysus.addAnimation("normal", "assets/dionysus01.png", "assets/dionysus02.png", "assets/dionysus03.png");  
     }
   
+   
+  ///LEVEL THREE THE MAZE
+      
+  textSize(60);
+  textStyle(BOLD)
+  fill(50);
+  text("III Sub Rosa", 50, 1800, 1000, 80);
+  
+  textSize(24);
+  textStyle(BOLD)
+  fill(50);
+  text("Find the Rose", 50, 1875, 1000, 80);
+  
                                                                           
   //displacer so gem can move the bodies around
   
@@ -222,11 +243,13 @@ function draw() {
   
   if(keyCode == (88))
     {
-    var bullet = createSprite(gem.position.x, gem.position.y);
+    bullet = createSprite(gem.position.x, gem.position.y);
     bullet.addImage(bulletsImage);
     bullet.setSpeed(10+gem.getSpeed(), gem.rotation);
     bullet.life = 30;
     bullets.add(bullet);
+  
+  
     }
   
   //draw the sprites
