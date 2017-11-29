@@ -5,6 +5,7 @@ var line01;
 var isActive = false;
 var rose01, rose02, rose03;
 var bloomingose, bloomingrose01;
+var blackRose, redRose, whiteRose, yellowRose, pinkRose, navyRose, blueRose
 
 // level 2 sprites
 var body1, body2, body3, body4, body5, stonehenge1, stonehenge2, stonehenge3, stonehenge4, stonehenge5, stonehenge6, stonehenge7;
@@ -64,49 +65,65 @@ for(var i = 0; i<32; i++) {
   }
   
 //level 1 create the sprites
-
+  blackRose = createSprite(450, 200);
+  blackRose.addImage(loadImage("assets/blackrose.png"));
+  
+  yellowRose = createSprite(350, 400);
+  yellowRose.addImage(loadImage("assets/yellowrose.png"));
+  
+  whiteRose = createSprite(450, 600);
+  whiteRose.addImage(loadImage("assets/whiterose.png"));
+  
+  redRose = createSprite(1100, 200);
+  redRose.addImage(loadImage("assets/redrose.png"));
+  
+  navyRose = createSprite(1200, 400);
+  navyRose.addImage(loadImage("assets/navyrose.png"));
+  
+  blueRose = createSprite(1100, 600);
+  blueRose.addImage(loadImage("assets/lightbluerose.png"));
   
 //level 2 create the sprites
-  stonehenge1 = createSprite(300, 1100);
-  stonehenge1.addImage(loadImage("assets/stonehenge01.png"))
+  stonehenge1 = createSprite(300, 1300);
+  stonehenge1.addImage(loadImage("assets/stonehenge01.png"));
   
-  stonehenge2 = createSprite(550, 1000);
-  stonehenge2.addImage(loadImage("assets/stonehenge02.png"))
+  stonehenge2 = createSprite(500, 1100);
+  stonehenge2.addImage(loadImage("assets/stonehenge02.png"));
   
-  stonehenge3 = createSprite(800, 1000);
-  stonehenge3.addImage(loadImage("assets/stonehenge03.png"))
+  stonehenge3 = createSprite(800, 1100);
+  stonehenge3.addImage(loadImage("assets/stonehenge03.png"));
   
-  stonehenge4 = createSprite(1200, 1100);
-  stonehenge4.addImage(loadImage("assets/stonehenge04.png"))
+  stonehenge4 = createSprite(1100, 1200);
+  stonehenge4.addImage(loadImage("assets/stonehenge04.png"));
   
   stonehenge5 = createSprite(480, 1600);
-  stonehenge5.addImage(loadImage("assets/stonehenge06.png"))
+  stonehenge5.addImage(loadImage("assets/stonehenge06.png"));
   
   stonehenge6 = createSprite(750, 1500);
-  stonehenge6.addImage(loadImage("assets/stonehenge05.png"))
+  stonehenge6.addImage(loadImage("assets/stonehenge05.png"));
   
   stonehenge7 = createSprite(300, 1500);
-  stonehenge7.addImage(loadImage("assets/stonehenge07.png"))
+  stonehenge7.addImage(loadImage("assets/stonehenge07.png"));
   
-  body1 = createSprite(100, 500);
+  body1 = createSprite(100, 1500);
   body1.addImage("normal", loadImage("assets/body01.png"));
-  body1.addImage("poppers", loadImage("assets/poppers.png"));
+ 
   
   body2 = createSprite(900, 1500);
   body2.addImage("normal", loadImage("assets/body02.png"));
-  body2.addImage("jockstrap", loadImage("assets/jockstrap.png"));
+  
   
   body3 = createSprite(600, 1500);
   body3.addImage("normal", loadImage("assets/body03.png"));
-  body3.addImage("collar", loadImage("assets/collar.png"));
+  
   
   body4 = createSprite(650, 1500);
   body4.addImage("normal", loadImage("assets/body04.png"));
-  body4.addImage("truvada", loadImage("assets/truvada.png"));
+  
   
   body5 = createSprite(1150, 1500);
   body5.addImage("normal", loadImage("assets/body05.png"));
-  body5.addImage("jockstrap", loadImage("assets/urinal.png"));
+  
   
   line01 = createSprite(750, 800);
   line01.addImage(loadImage("assets/line01.png"))
@@ -150,7 +167,7 @@ function draw() {
   fill(50);
   text("Collect the Roses", 50, 125, 1000, 80);
   
-  animation(scribble, 100, 160);
+  animation(scribble, 90, 225);
   animation(scribs, 1300, 100);
 
   if(gem.overlap(body1) || isActive){
@@ -336,4 +353,3 @@ function drawHealthBar() {
     //gem.changeAnimation("normal");
   
 //}
-
